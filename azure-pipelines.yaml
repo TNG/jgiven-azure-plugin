@@ -1,0 +1,24 @@
+trigger: 
+- implementation
+
+pool:
+  vmImage: "ubuntu-latest"
+
+stages:
+  - stage: Run_and_publish_unit_tests
+    jobs:
+      - job:
+        steps:
+          - task: Npm@1
+            inputs:
+              command: 'install'
+              workingDir: 'publishjgivenreport' 
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              workingDir: 'publishjgivenreport'
+              customCommand: 'test'
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/ResultsFile.xml'

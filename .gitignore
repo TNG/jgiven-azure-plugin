@@ -1,0 +1,9 @@
+node_modules
+publishjgivenreports/node_modules
+package-lock.json
+publishjgivenreports/package-lock.json
+*.vsix
+dist
+publishjgivenreport/index.js
+publishjgivenreport/tests/*.js
+publishjgivenreport/.taskkey

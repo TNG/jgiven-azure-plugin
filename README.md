@@ -1,15 +1,32 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Azure DevOps - Publish JGiven Reports
+This extension enables an user to publish JGiven HTML reports to a newly created tab inside the Dev Ops console, near the `Summary` tab.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+# Usage
+## 1. Intall the extension from the market
+[Insert link here]
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## 2. Add JGiven step in your azure pipeline task
+```
+- script: ./gradlew -b jgiven-examples/build.gradle test
+  displayName: 'Test and generate JGiven report'
+```
+
+## 3. Include the extension in your pipeline config file as following:
+```
+- task: publishjgivenreport@1
+    inputs:
+      jgivenReportPatterns: 'jgiven-examples/**/html5'
+      #workingDir: 'custom/working/dir' #if not set, default value is $(Build.SourcesDirectory)
+```
+
+The jgivenReportPatterns supports inputting multiple paths, by separating the paths with a `#`.
+```
+jgivenReportPatterns: 'path_1#path_2#path_3'
+```
+The syntax for `jgivenReportPatterns` follows the Unix file name matcher mechanism. You can use wildcards such as `*` to match any number of characters or `**` to recursively match subdirectories.
+
+# Screenshot
+![JGiven Panel in Dev Ops](resources/screenshot.png "JGiven Dashboard")
 
 # Contribute
 TODO: Explain how other users and developers can contribute to make your code better. 
