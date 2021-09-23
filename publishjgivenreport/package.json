@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsc && mocha tests/_suite.js --reporter xunit --reporter-option output=ResultsFile.xml"
+    "test": "tsc && mocha tests/_suite.js"
   },
   "inputs": [
     {
