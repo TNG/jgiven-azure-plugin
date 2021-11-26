@@ -7,7 +7,7 @@ Contributions are very welcome. There are different ways you can contribute:
 1. Come up with new ideas for improving the JGiven Azure Plugin
     * If you have an idea how this plugin may be improved, just open a new issue and describe your idea.
 1. Report bugs
-    * If you find a bug in the JGiven Azure Plugin, please open a new issue.
+    * If you find a bug in the JGiven Azure Plugin, please open a new issue. Further, do not forget to provide a short, reproducible and self-contained example.
 
 If you want to contribute code or documentation please follow the following workflow:
 

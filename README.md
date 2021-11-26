@@ -1,8 +1,8 @@
 # Azure DevOps - Publish JGiven Reports
-This extension enables users to publish JGiven HTML reports to a newly created tab inside the DevOps console, near the `Summary` tab.
+This extension enables users to publish JGiven HTML reports to a newly created tab inside the DevOps console, next to the `Summary` tab.
 
 # Usage
-## 1. Install the extension from the market
+## 1. Install the extension from the marketplace
 [Insert link here]
 
 ## 2. Add JGiven step in your azure pipeline task
@@ -30,8 +30,8 @@ The syntax for `jgivenReportPatterns` follows the Unix file name matcher mechani
 
 # License
 
-The JGiven Azure Plugin is published under the Apache License 2.0, see https://www.apache.org/licenses/LICENSE-2.0 for details.
+The JGiven Azure Plugin is published under the Apache License 2.0, see https://www.apache.org/licenses/LICENSE-2.0 or [LICENSE](LICENSE) for details.
 
 # Contributing
-TODO: Explain how other users and developers can contribute to make your code better. 
+See [CONTRIBUTING](CONTRIBUTING.md)
 
