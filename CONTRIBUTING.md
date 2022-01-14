@@ -14,4 +14,5 @@ If you want to contribute code or documentation please follow the following work
 1. Fork the project
 2. Create a new feature branch with your contribution (not needed for documentation improvements)
 3. Implement your great new feature or bug fix
-4. Create a pull request
+4. Remember to sign off your commits according to our [DCO](DCO)
+5. Create a pull request
