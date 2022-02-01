@@ -1,7 +1,8 @@
 import path from "path";
 import * as ttm from 'azure-pipelines-task-lib/mock-test';
 import * as assert from 'assert'
-import fs = require('fs')
+
+let fs = require('fs')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
 const startingPointWithAttachments = path.join(__dirname, 'static/with_attachments')
