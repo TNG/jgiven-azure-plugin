@@ -3,13 +3,13 @@
     "id": "6d4b1476-3a89-4eca-ba13-df048e3d697a",
     "name": "PublishJGivenReport",
     "friendlyName": "Publish JGiven Report",
-    "description": "Publish JGiven reports to Azure DevOps",
+    "description": "Publishes JGiven reports to Azure DevOps",
     "category": "Utility",
     "author": "Andru-Lucian Stefanescu",
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 145
+        "Patch": 147
     },
     "instanceNameFormat": "Publish JGiven Report",
     "execution": {
