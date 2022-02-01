@@ -13,7 +13,7 @@ This extension enables users to publish JGiven HTML reports to a newly created t
 
 ## 3. Include the extension in your pipeline config file as following:
 ```
-- task: publishjgivenreport@1
+- task: publishjgivenreport@0
     inputs:
       jgivenReportPatterns: 'jgiven-examples/**/html5'
       #workingDir: 'custom/working/dir' #if not set, default value is $(Build.SourcesDirectory)

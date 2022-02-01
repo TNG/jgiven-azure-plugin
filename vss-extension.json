@@ -1,9 +1,9 @@
 {
     "manifestVersion": 1,
-    "id": "jgiven-publishTestReports",
-    "version": "0.1.132",
+    "id": "jgivenTestIntegration",
+    "version": "0.1.147",
     "name": "JGiven Reports Publisher",
-    "publisher": "jgiven-publishTestResults",
+    "publisher": "jgivenTestIntegration",
     "public": false,  
     "targets": [
         {
