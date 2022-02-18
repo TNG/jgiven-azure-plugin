@@ -7,7 +7,7 @@ let SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 function updateVersion() {
   if [ $# -neq 3 ]; then
     echo "Wrong number of arguments!"
-    exit 1
+    return 2
   fi
 
   echo "Updating task.json..."
