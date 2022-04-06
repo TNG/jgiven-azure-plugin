@@ -7,3 +7,7 @@ dist
 publishjgivenreport/index.js
 publishjgivenreport/tests/*.js
 publishjgivenreport/.taskkey
+app.bundle.js
+index.html
+font.woff
+styles.css

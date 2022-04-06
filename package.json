@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Extension that publishes JGiven test reports in Azure DevOps console",
   "scripts": {
+    "prebuild": "bash ./scripts/prebuild.sh",
     "build": "tsc -p . && tsc -p publishjgivenreport/",
     "postbuild": "npm run package",
     "package": "tfx extension create",
@@ -24,6 +25,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "jgiven-html-app": "^1.0.0",
     "azure-pipelines-task-lib": "^3.1.9",
     "@types/jquery": "^3.5.6",
     "vss-web-extension-sdk": "^5.141.0"
