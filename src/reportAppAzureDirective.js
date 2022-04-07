@@ -27,3 +27,18 @@ jgivenReportApp.directive('a', function () {
         }
     }
 })
+
+
+jgivenReportApp.directive('i', function () {
+    return {
+        restrict: 'E',
+        link: function (scope, elem, attrs) {
+            if (attrs.ngClick && attrs.ngClick.includes('removeBookmark')) {
+                elem.on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                })
+            }
+        }
+    }
+})
