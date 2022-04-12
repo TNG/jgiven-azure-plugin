@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "jgivenTestIntegration",
-    "version": "0.1.150",
+    "version": "0.1.151",
     "name": "JGiven Reports Publisher",
     "publisher": "jgivenTestIntegration",
     "public": false,  
@@ -24,6 +24,18 @@
             "path": "dist",
             "addressable": true,
             "packagePath": "scripts"
+        },
+        {
+            "path": "index.html",
+            "addressable": true
+        },
+        {
+            "path": "styles.css",
+            "addressable": true
+        },
+        {
+            "path": "font.woff",
+            "addressable": true
         }
     ],
     "categories": [
