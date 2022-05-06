@@ -5,10 +5,10 @@ export REPORT_APP_LOCATION="${TOPLEVEL}/node_modules/jgiven-html-app"
 
 function inject_azure_code(){
   local injection_target="$1"
-  directives="$(<"${TOPLEVEL}/src/reportAppAzureDirective.js")"
+  directives="$(<${TOPLEVEL}/src/reportAppAzureDirective.js)"
   scope="$(<"${TOPLEVEL}/src/reportAppAzureScopeRedirection.js")"
-  sed -i "/^\s*jgivenReportApp.controller/i ${directives}/" "${injection_target}"
-  sed -i "/^\s*jgivenReportApp.controller/i ${scope}/" "${injection_target}"
+  sed -i '/^\s*jgivenReportApp.controller/i '"$(echo ${directives})"'' "${injection_target}"
+  sed -i '/^\s*$scope.customNavigationLinks/a '"$(echo ${scope})"'' "${injection_target}"
 }
 
 function copy_to_toplevel(){
@@ -26,11 +26,12 @@ function rebuild_report_app(){
   popd
 }
 
-injection_target="${REPORT_APP_LOCATION}/src/js/controller/reportCrtl.js"
+injection_target="${REPORT_APP_LOCATION}/src/js/controller/reportCtrl.js"
 backup="${injection_target}.bak"
+report_app_dist="${REPORT_APP_LOCATION}/dist"
 dist_backup="${REPORT_APP_LOCATION}/dist_bak"
 cp "${injection_target}" "${backup}"
-mv dist "${dist_backup}"
+mv "${report_app_dist}" "${dist_backup}"
 inject_azure_code "${injection_target}"
 rebuild_report_app
 copy_to_toplevel

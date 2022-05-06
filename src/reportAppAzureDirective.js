@@ -1,4 +1,3 @@
-//this is generated for azure
 jgivenReportApp.directive('a', function () {
     return {
         restrict: 'E',
@@ -26,7 +25,7 @@ jgivenReportApp.directive('a', function () {
             }
         }
     }
-})
+});
 
 
 jgivenReportApp.directive('i', function () {
