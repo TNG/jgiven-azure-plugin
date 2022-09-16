@@ -188,13 +188,13 @@ describe('JSON Handler', function () {
         fs.rmSync(path.join(dataPath, 'mappings.js'))
     })
 
-    it('The tags parsed file should contain only JSON', (done) => {
+    it('The tags parsed file should only contain JSON', (done) => {
         let fileContent = readFileContent(tagFile)
         assert.equal(isJSON(fileContent), true);
         done();
     })
 
-    it('The metaData parsed file should contain only JSON', (done) => {
+    it('The metaData parsed file should only contain JSON', (done) => {
         let fileContent = readFileContent(metaDataFile)
         assert.equal(isJSON(fileContent), true);
         done();
@@ -224,7 +224,7 @@ describe(`Failure tests`, function () {
         tr = new ttm.MockTestRunner(tp)
         tr.run()
         assert.equal(tr.failed, true)
-        assert.equal(tr.errorIssues.includes("The pattern(s) didn't match any path"), true)
+        assert.equal(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
         done()
     })
 
