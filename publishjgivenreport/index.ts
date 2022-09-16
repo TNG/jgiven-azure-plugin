@@ -109,14 +109,14 @@ function uploadAllJGivenReports() {
                     uploadedLocations.add(location)
                 }
             } catch (e) {
-                console.error(`For the location ${path.join(centralPath, location)} I got an error, so I am skipping it.`)
+                console.error(`Skipping location ${path.join(centralPath, location)} due to an error.`)
                 console.error(e)
             }
         })
     })
 
     if (!hasAtLeastOneValidLocation) {
-        tl.setResult(tl.TaskResult.Failed, "The pattern(s) didn't match any path")
+        tl.setResult(tl.TaskResult.Failed, "The pattern(s) didn't match any path.")
         return
     }
     uploadTags(lastValidLocation)
