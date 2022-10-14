@@ -10,10 +10,14 @@ function updateVersion() {
     return 2
   fi
 
-  echo "Updating task.json..."
-  updateTask $1 $2 $3
+  MAJOR_VERSION=$1
+  MINOR_VERSION=$2
+  PATCH_VERSION=$3
 
-  VERSION="${1}.${2}.${3}"
+  echo "Updating task.json..."
+  updateTask MAJOR_VERSION MINOR_VERSION PATCH_VERSION
+
+  VERSION="${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}"
 
   echo "Updating vss-extension.json..."
   updateVSSExtension $VERSION
@@ -27,33 +31,34 @@ function updateVersion() {
 }
 
 function updateTask() {
-  cd $SCRIPT_LOCATION/../publishjgivenreport
+  TASK_FILE=$SCRIPT_LOCATION/../publishjgivenreport/task.json
 
   MAJOR_VERSION=$1
   MINOR_VERSION=$2
   PATCH_VERSION=$3
 
-  sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' task.json
-  sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' task.json
-  sed -i 's/"Patch":.*,/"Patch": ${PATCH_VERSION},/' task.json
+  sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' $TASK_FILE
+  sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' $TASK_FILE
+  sed -i 's/"Patch":.*,/"Patch": ${PATCH_VERSION},/' $TASK_FILE
 
   return 0
 }
 
 function updateVSSExtension() {
+  VSS_FILE=$SCRIPT_LOCATION/../vss-extension.json
   cd $SCRIPT_LOCATION/..
 
   VERSION=$1
-  sed -i 's/"version":.*,/"version": ${VERSION},/' vss-extension.json
+  sed -i 's/"version":.*,/"version": ${VERSION},/' VSS_FILE
 
   return 0
 }
 
 function updatePackage() {
-  cd $SCRIPT_LOCATION/..
+  PACKAGE_FILE=$SCRIPT_LOCATION/../package.json
 
   VERSION=$1
-  sed -i 's/"version":.*,/"version": ${VERSION},/' vss-extension.json
+  sed -i 's/"version":.*,/"version": ${VERSION},/' PACKAGE_FILE
 
   return 0
 }
