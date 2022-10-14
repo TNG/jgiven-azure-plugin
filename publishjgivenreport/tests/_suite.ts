@@ -1,6 +1,7 @@
 import path from "path";
 import * as ttm from 'azure-pipelines-task-lib/mock-test';
 import * as assert from 'assert'
+import { jsonToTagMap } from "../../src/enhancer/utils";
 
 let fs = require('fs')
 
@@ -48,7 +49,7 @@ describe('Attachment creation and upload', function () {
     })
 
     it('Should find and upload all the generated attachments', (done) => {
-        assert.equal(tr.succeeded, true)
+        assert.strictEqual(tr.succeeded, true)
         allAttachments.forEach((attachment) => containsUploadedFileWithType(tr.stdout, attachment, 'attachmentFile'))
         done()
     })
@@ -124,50 +125,50 @@ describe('Multiple locations', function () {
     })
 
     it('Should upload files from both locations', (done) => {
-        assert.equal(tr.succeeded, true)
-        assert.equal(tr.stdout.includes('with_attachments'), true)
-        assert.equal(tr.stdout.includes('with_attachments2'), true)
+        assert.strictEqual(tr.succeeded, true)
+        assert.strictEqual(tr.stdout.includes('with_attachments'), true)
+        assert.strictEqual(tr.stdout.includes('with_attachments2'), true)
         done()
     })
 
     it('Should upload the mappings only once', (done) => {
-        assert.equal(tr.stdout.includes(`type=locationMappings;`), true)
-        assert.equal(tr.stdout.indexOf(`type=locationMappings;`), tr.stdout.lastIndexOf(`type=locationMappings;`))
+        assert.strictEqual(tr.stdout.includes(`type=locationMappings;`), true)
+        assert.strictEqual(tr.stdout.indexOf(`type=locationMappings;`), tr.stdout.lastIndexOf(`type=locationMappings;`))
         done()
     })
 
     it('Should upload the index only once', (done) => {
-        assert.equal(tr.stdout.includes(`type=html;`), true)
-        assert.equal(tr.stdout.indexOf(`type=html;`), tr.stdout.lastIndexOf(`type=html;`))
+        assert.strictEqual(tr.stdout.includes(`type=html;`), true)
+        assert.strictEqual(tr.stdout.indexOf(`type=html;`), tr.stdout.lastIndexOf(`type=html;`))
         done()
     })
 
     it('Should upload the tags only once', (done) => {
-        assert.equal(tr.stdout.includes(`type=tags;`), true)
-        assert.equal(tr.stdout.indexOf(`type=tags;`), tr.stdout.lastIndexOf(`type=tags;`))
+        assert.strictEqual(tr.stdout.includes(`type=tags;`), true)
+        assert.strictEqual(tr.stdout.indexOf(`type=tags;`), tr.stdout.lastIndexOf(`type=tags;`))
         done()
     })
 
     it('Should upload the metadata only once', (done) => {
-        assert.equal(tr.stdout.includes(`type=metadata;`), true)
-        assert.equal(tr.stdout.indexOf(`type=metadata;`), tr.stdout.lastIndexOf(`type=metadata;`))
+        assert.strictEqual(tr.stdout.includes(`type=metadata;`), true)
+        assert.strictEqual(tr.stdout.indexOf(`type=metadata;`), tr.stdout.lastIndexOf(`type=metadata;`))
         done()
     })
 
     it('The tag file should be consistent', (done) => {
         let tagJSON: string = fs.readFileSync(path.join(__dirname, 'static/with_attachments2/data/parsed/tags.js')).toString()
         let tagMap: TagMap = jsonToTagMap(tagJSON)
-        assert.equal(tagMap.has('tagTypeMap'), true)
-        assert.equal(tagMap.has('tags'), true)
-        assert.equal(tagMap.get('tagTypeMap')!.size, 27)
-        assert.equal(tagMap.get('tags')!.size, 31)
-        assert.equal(tagMap.get('tagTypeMap')!.get('com.tngtech.jgiven.junit.test.GivenTaggedTestStep$StageTag')!
+        assert.strictEqual(tagMap.has('tagTypeMap'), true)
+        assert.strictEqual(tagMap.has('tags'), true)
+        assert.strictEqual(tagMap.get('tagTypeMap')!.size, 27)
+        assert.strictEqual(tagMap.get('tags')!.size, 31)
+        assert.strictEqual(tagMap.get('tagTypeMap')!.get('com.tngtech.jgiven.junit.test.GivenTaggedTestStep$StageTag')!
             .get('type'), 'StageTag')
-        assert.equal(tagMap.get('tagTypeMap')!.get('com.tngtech.jgiven.examples.tags.ExampleSubCategory')!
+        assert.strictEqual(tagMap.get('tagTypeMap')!.get('com.tngtech.jgiven.examples.tags.ExampleSubCategory')!
             .get('tags')!.length, 2)
-        assert.equal(tagMap.get('tags')!.get('com.tngtech.jgiven.junit.StepsAreReportedTest$TestTag-foo, bar, baz')!
+        assert.strictEqual(tagMap.get('tags')!.get('com.tngtech.jgiven.junit.StepsAreReportedTest$TestTag-foo, bar, baz')!
             .get('value')!, "foo, bar, baz")
-        assert.equal(tagMap.get('tags')!.get('com.tngtech.jgiven.examples.tags.DynamicTags$CarOrder-BMW')!
+        assert.strictEqual(tagMap.get('tags')!.get('com.tngtech.jgiven.examples.tags.DynamicTags$CarOrder-BMW')!
             .get('value')!, "BMW")
         done()
     })
@@ -190,13 +191,13 @@ describe('JSON Handler', function () {
 
     it('The tags parsed file should only contain JSON', (done) => {
         let fileContent = readFileContent(tagFile)
-        assert.equal(isJSON(fileContent), true);
+        assert.strictEqual(isJSON(fileContent), true);
         done();
     })
 
     it('The metaData parsed file should only contain JSON', (done) => {
         let fileContent = readFileContent(metaDataFile)
-        assert.equal(isJSON(fileContent), true);
+        assert.strictEqual(isJSON(fileContent), true);
         done();
     })
 
@@ -223,8 +224,8 @@ describe(`Failure tests`, function () {
         tp = path.join(__dirname, 'withoutLocationTest.js')
         tr = new ttm.MockTestRunner(tp)
         tr.run()
-        assert.equal(tr.failed, true)
-        assert.equal(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
+        assert.strictEqual(tr.failed, true)
+        assert.strictEqual(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
         done()
     })
 
@@ -234,8 +235,8 @@ describe(`Failure tests`, function () {
         tp = path.join(__dirname, 'withoutIndexTest.js')
         tr = new ttm.MockTestRunner(tp)
         tr.run()
-        assert.equal(tr.failed, true)
-        assert.equal(tr.errorIssues.includes(`The given location ${path.join(startingPointWithoutIndex, 'index.html')} does not exist.`), true)
+        assert.strictEqual(tr.failed, true)
+        assert.strictEqual(tr.errorIssues.includes(`The given location ${path.join(startingPointWithoutIndex, 'index.html')} does not exist.`), true)
         done()
     })
 })
@@ -249,8 +250,8 @@ function verifyLocationMappingForFile(allOutput: string, file: string, mappings:
     let uploadCommandStartingPosition: number = allOutput.lastIndexOf('task.addattachment', position)
     let nameStart: number = allOutput.indexOf('name=', uploadCommandStartingPosition) + 15
     let name: string = allOutput.slice(nameStart, allOutput.indexOf(';', nameStart))
-    assert.equal(mappings.has(name), true, 'The JGiven generated file is not set inside the mappings')
-    assert.equal(mappings.get(name), transformWindowsPathToPosix(file), 'The JGiven generated file is pointing to another file')
+    assert.strictEqual(mappings.has(name), true, 'The JGiven generated file is not set inside the mappings')
+    assert.strictEqual(mappings.get(name), transformWindowsPathToPosix(file), 'The JGiven generated file is pointing to another file')
 }
 
 function verifyGenerateFileExtensionForLocation(allOutput: string, location: string) {
@@ -259,7 +260,7 @@ function verifyGenerateFileExtensionForLocation(allOutput: string, location: str
     let nameStart: number = allOutput.indexOf('name=', uploadCommandStartingPosition) + 5
     let name: string = allOutput.slice(nameStart, allOutput.indexOf(';', nameStart))
 
-    assert.equal(getExtensionFromName(name), getExtensionFromName(location))
+    assert.strictEqual(getExtensionFromName(name), getExtensionFromName(location))
 }
 
 function getExtensionFromName(name: string) {
@@ -273,20 +274,9 @@ function isJSON(content: string) {
 
 function containsUploadedFileWithType(allOutput: string, location: string, type: string) {
     let position: number = allOutput.indexOf(location);
-    assert.equal(position != -1, true, `The file ${location} is not uploaded`)
-    assert.equal(allOutput.lastIndexOf(location), position, "The file should be uploaded only once")
+    assert.strictEqual(position != -1, true, `The file ${location} is not uploaded`)
+    assert.strictEqual(allOutput.lastIndexOf(location), position, "The file should be uploaded only once")
     let uploadCommandStartingPosition: number = allOutput.lastIndexOf('task.addattachment', position)
     let attachmentType: string = allOutput.slice(allOutput.indexOf('type=', uploadCommandStartingPosition) + 5, allOutput.indexOf(';', allOutput.indexOf('type=', uploadCommandStartingPosition) + 5));
-    assert.equal(attachmentType, type, `The attachment was found, but with another type`)
-}
-
-function jsonToTagMap(givenJSON: string): TagMap {
-    let tagMap: TagMap = new Map(Object.entries(JSON.parse(givenJSON)))
-    for (let primaryLevel of tagMap.keys()) {
-        tagMap.set(primaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!)))
-        for (let secondaryLevel of tagMap.get(primaryLevel)!.keys()) {
-            tagMap.get(primaryLevel)!.set(secondaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!.get(secondaryLevel)!)))
-        }
-    }
-    return tagMap
+    assert.strictEqual(attachmentType, type, `The attachment was found, but with another type`)
 }
