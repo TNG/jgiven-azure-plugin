@@ -1,4 +1,4 @@
-type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
+import { jsonToTagMap, TagMap } from "../../utils";
 
 export function updateHtml(allHtml: Map<any, any>, toBeIncludedInHTML: Array<any>) {
     let jgivenHtml: string = allHtml.get(Array.from(allHtml.keys())[0])![0];
@@ -76,7 +76,7 @@ export function getJobIdFromName(name: string): string {
 }
 
 function mergeAllTags(tagsForId: Map<string, Array<string>>) {
-    var tagMap: TagMap = new Map([
+    let tagMap: TagMap = new Map([
         ["tagTypeMap", new Map()],
         ["tags", new Map()]
     ])
@@ -99,17 +99,6 @@ function mapToJSONObject(givenMap: Map<any, any>) {
         }
     })
     return object
-}
-
-function jsonToTagMap(givenJSON: string): TagMap {
-    let tagMap: TagMap = new Map(Object.entries(JSON.parse(givenJSON)))
-    for (let primaryLevel of tagMap.keys()) {
-        tagMap.set(primaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!)))
-        for (let secondaryLevel of tagMap.get(primaryLevel)!.keys()) {
-            tagMap.get(primaryLevel)!.set(secondaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!.get(secondaryLevel)!)))
-        }
-    }
-    return tagMap
 }
 
 function addTags(jsonContent: string, tagMap: TagMap) {
