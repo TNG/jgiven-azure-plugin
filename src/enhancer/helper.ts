@@ -1,4 +1,4 @@
-import { jsonToTagMap, TagMap } from "../../utils";
+import { jsonToTagMap, TagMap } from "./utils";
 
 export function updateHtml(allHtml: Map<any, any>, toBeIncludedInHTML: Array<any>) {
     let jgivenHtml: string = allHtml.get(Array.from(allHtml.keys())[0])![0];

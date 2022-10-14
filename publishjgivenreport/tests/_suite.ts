@@ -1,7 +1,7 @@
 import path from "path";
 import * as ttm from 'azure-pipelines-task-lib/mock-test';
 import * as assert from 'assert'
-import { jsonToTagMap } from "../../utils";
+import { jsonToTagMap } from "../../src/enhancer/utils";
 
 let fs = require('fs')
 

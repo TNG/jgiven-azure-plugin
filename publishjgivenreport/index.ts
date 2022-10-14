@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as pako from 'pako'
 import * as glob from 'glob'
-import { jsonToTagMap } from "../utils";
+import { jsonToTagMap } from "../src/enhancer/utils";
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
 

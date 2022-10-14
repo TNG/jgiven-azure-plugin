@@ -12,6 +12,6 @@
     },
     "files": [
       "src/enhancer/tab.ts",
-      "utils.ts"
+        "src/enhancer/utils.ts"
     ]
 }
