@@ -2,8 +2,6 @@
 
 # Update version of all files
 
-let SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
-
 function updateVersion() {
   if [ $# -neq 1 ]; then
     echo "Wrong number of arguments!"
