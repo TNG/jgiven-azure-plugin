@@ -9,7 +9,7 @@ set -e
 
 echo "Checking prerequisites..."
 
-if [$# -neq 2]; then
+if [ $# -ne 2 ]; then
   echo "Wrong number of arguments!"
   return 2
 fi

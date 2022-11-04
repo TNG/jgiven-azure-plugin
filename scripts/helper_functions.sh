@@ -2,15 +2,17 @@
 
 # Update version of all files
 
+SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+
 function updateVersion() {
-  if [ $# -neq 1 ]; then
+  if [ $# -ne 1 ]; then
     echo "Wrong number of arguments!"
     return 2
   fi
 
   VERSION=$1
 
-  echo "Updating task.json..."
+  echo "Updating task.json to version ${VERSION}..."
   updateTask VERSION
 
   echo "Updating vss-extension.json..."
