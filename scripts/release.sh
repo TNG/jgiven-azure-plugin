@@ -1,14 +1,18 @@
 #!/bin/bash
 
+echo "Starting Release"
+
 SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 source "${SCRIPT_LOCATION}/helper_functions.sh"
+
+set -e
+
+echo "Checking prerequisites..."
 
 if [$# -neq 2]; then
   echo "Wrong number of arguments!"
   return 2
 fi
-
-
 
 TOKEN=$1
 
