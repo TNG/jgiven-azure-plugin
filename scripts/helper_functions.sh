@@ -4,7 +4,7 @@
 
 SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 
-function updateVersion() {
+function update_version() {
   if [ $# -ne 1 ]; then
     echo "Wrong number of arguments!"
     return 2
@@ -12,23 +12,23 @@ function updateVersion() {
 
   VERSION=$1
 
-  echo "Updating task.json to version ${VERSION}..."
-  updateTask VERSION
+  echo "Updating task.json..."
+  update_task VERSION
 
   echo "Updating vss-extension.json..."
-  updateVSSExtension $VERSION
+  update_vss_extension $VERSION
 
   echo "Updating package.json..."
-  updatePackage $VERSION
+  update_package $VERSION
 
   echo "Versions are up to date!"
 
   return 0
 }
 
-function updateTask() {
+function update_task() {
   TASK_FILE="${SCRIPT_LOCATION}/../publishjgivenreport/task.json"
-  TASK_PATH=$(getAbsoluteFilename ${TASK_FILE})
+  TASK_PATH=$(get_absolute_filename ${TASK_FILE})
 
   VERSION=$1
 
@@ -47,25 +47,27 @@ function updateTask() {
   return 0
 }
 
-function updateVSSExtension() {
+function update_vss_extension() {
   VSS_FILE="${SCRIPT_LOCATION}/../vss-extension.json"
-  cd $SCRIPT_LOCATION/..
+  VSS_PATH=$(get_absolute_filename ${VSS_FILE})
 
   VERSION=$1
-  sed -i 's/"version":.*,/"version": ${VERSION},/' VSS_FILE
+  sed -i 's/"version":.*,/"version": '${VERSION}',/' "${VSS_FILE}"
 
   return 0
 }
 
-function updatePackage() {
+function update_package() {
   PACKAGE_FILE="${SCRIPT_LOCATION}/../package.json"
+  PACKAGE_PATH=$(get_absolute_filename ${PACKAGE_FILE})
+  echo $PACKAGE_PATH
 
   VERSION=$1
-  sed -i 's/"version":.*,/"version": ${VERSION},/' PACKAGE_FILE
+  sed -i 's/"version":.*,/"version": '${VERSION}',/' "${PACKAGE_PATH}"
 
   return 0
 }
 
-function getAbsoluteFilename() {
+function get_absolute_filename() {
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
