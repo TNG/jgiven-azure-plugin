@@ -27,7 +27,8 @@ function updateVersion() {
 }
 
 function updateTask() {
-  TASK_FILE=$SCRIPT_LOCATION/../publishjgivenreport/task.json
+  TASK_FILE="${SCRIPT_LOCATION}/../publishjgivenreport/task.json"
+  TASK_PATH=$(getAbsoluteFilename ${TASK_FILE})
 
   VERSION=$1
 
@@ -39,15 +40,15 @@ function updateTask() {
   MINOR_VERSION=${ARRAY[1]}
   PATCH_VERSION=${ARRAY[2]}
 
-  sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' $TASK_FILE
-  sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' $TASK_FILE
-  sed -i 's/"Patch":.*,/"Patch": ${PATCH_VERSION},/' $TASK_FILE
+  sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' $TASK_PATH
+  sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' $TASK_PATH
+  sed -i 's/"Patch":.*,/"Patch": ${PATCH_VERSION},/' $TASK_PATH
 
   return 0
 }
 
 function updateVSSExtension() {
-  VSS_FILE=$SCRIPT_LOCATION/../vss-extension.json
+  VSS_FILE="${SCRIPT_LOCATION}/../vss-extension.json"
   cd $SCRIPT_LOCATION/..
 
   VERSION=$1
@@ -57,10 +58,14 @@ function updateVSSExtension() {
 }
 
 function updatePackage() {
-  PACKAGE_FILE=$SCRIPT_LOCATION/../package.json
+  PACKAGE_FILE="${SCRIPT_LOCATION}/../package.json"
 
   VERSION=$1
   sed -i 's/"version":.*,/"version": ${VERSION},/' PACKAGE_FILE
 
   return 0
+}
+
+function getAbsoluteFilename() {
+  echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
