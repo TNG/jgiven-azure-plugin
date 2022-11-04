@@ -17,8 +17,7 @@ fi
 TOKEN=$1
 
 VERSION=$2
-
-update_version $VERSION
+update_version "${VERSION}"
 
 echo "Building extension..."
 npm run-script build
