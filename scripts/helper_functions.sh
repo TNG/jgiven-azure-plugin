@@ -17,8 +17,6 @@ function update_version() {
   echo "Updating task.json..."
   update_task $VERSION
 
-  echo "Inner version ${VERSION}"
-
   echo "Updating vss-extension.json..."
   update_vss_extension "${VERSION}"
 
@@ -47,8 +45,6 @@ function update_task() {
   sed -i 's/"Minor":.*/"Minor": '${MINOR_VERSION}',/' "${TASK_FILE}"
   sed -i 's/"Patch":.*/"Patch": '${PATCH_VERSION}',/' "${TASK_FILE}"
 
-  cat "${TASK_FILE}"
-
   return 0
 }
 
@@ -59,8 +55,6 @@ function update_vss_extension() {
 
   sed -i 's/"version":.*/"version": '"${VERSION}"',/' "${VSS_FILE}"
 
-  cat "${VSS_FILE}"
-
   return 0
 }
 
@@ -70,8 +64,6 @@ function update_package() {
   VERSION="${1}"
 
   sed -i 's/"version":.*/"version": '"${VERSION}"',/' "${PACKAGE_FILE}"
-
-  cat "${PACKAGE_FILE}"
 
   return 0
 }

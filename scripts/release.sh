@@ -19,6 +19,11 @@ TOKEN=$1
 VERSION=$2
 update_version "${VERSION}"
 
+echo "Preparing NPM..."
+npm install
+(cd "${SCRIPT_LOCATION}/../publishjgivenreport/" && npm install)
+npm install -g tfx-cli
+
 echo "Building extension..."
 npm run-script build
 
@@ -27,6 +32,6 @@ echo "Building successful!"
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 echo "Publishing extension to marketplace..."
-tfx extension publish --manifest-globs vss-extension --token $TOKEN
+tfx extension publish --manifest-globs vss-extension.json --token $TOKEN
 
 echo "Publishing successful!"
