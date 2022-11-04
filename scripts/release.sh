@@ -3,18 +3,18 @@
 SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 source "${SCRIPT_LOCATION}/helper_functions.sh"
 
-if [$# -neq 4]; then
+if [$# -neq 2]; then
   echo "Wrong number of arguments!"
   return 2
 fi
 
+
+
 TOKEN=$1
 
-MAJOR_VERSION=$2
-MINOR_VERSION=$3
-PATCH_VERSION=$4
+VERSION=$2
 
-updateVersion $MAJOR_VERSION $MINOR_VERSION $PATCH_VERSION
+updateVersion $VERSION
 
 echo "Building extension..."
 npm run-script build

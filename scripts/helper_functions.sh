@@ -5,19 +5,15 @@
 let SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 
 function updateVersion() {
-  if [ $# -neq 3 ]; then
+  if [ $# -neq 1 ]; then
     echo "Wrong number of arguments!"
     return 2
   fi
 
-  MAJOR_VERSION=$1
-  MINOR_VERSION=$2
-  PATCH_VERSION=$3
+  VERSION=$1
 
   echo "Updating task.json..."
-  updateTask MAJOR_VERSION MINOR_VERSION PATCH_VERSION
-
-  VERSION="${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}"
+  updateTask VERSION
 
   echo "Updating vss-extension.json..."
   updateVSSExtension $VERSION
@@ -33,9 +29,15 @@ function updateVersion() {
 function updateTask() {
   TASK_FILE=$SCRIPT_LOCATION/../publishjgivenreport/task.json
 
-  MAJOR_VERSION=$1
-  MINOR_VERSION=$2
-  PATCH_VERSION=$3
+  VERSION=$1
+
+  IFS='.'
+
+  read -ra ARRAY <<< "$VERSION"
+
+  MAJOR_VERSION=${ARRAY[0]}
+  MINOR_VERSION=${ARRAY[1]}
+  PATCH_VERSION=${ARRAY[2]}
 
   sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' $TASK_FILE
   sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' $TASK_FILE
