@@ -40,9 +40,9 @@ function updateTask() {
   MINOR_VERSION=${ARRAY[1]}
   PATCH_VERSION=${ARRAY[2]}
 
-  sed -i 's/"Major":.*,/"Major": ${MAJOR_VERSION},/' $TASK_PATH
-  sed -i 's/"Minor":.*,/"Minor": ${MINOR_VERSION},/' $TASK_PATH
-  sed -i 's/"Patch":.*,/"Patch": ${PATCH_VERSION},/' $TASK_PATH
+  sed -i 's/"Major":.*,/"Major": '${MAJOR_VERSION}',/' "${TASK_PATH}"
+  sed -i 's/"Minor":.*,/"Minor": '${MINOR_VERSION}',/' "${TASK_PATH}"
+  sed -i 's/"Patch":.*,/"Patch": '${PATCH_VERSION}',/' "${TASK_PATH}"
 
   return 0
 }
