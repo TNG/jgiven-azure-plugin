@@ -1,20 +1,28 @@
 #!/bin/bash
 
+echo "Starting Release"
+
 SCRIPT_LOCATION=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 source "${SCRIPT_LOCATION}/helper_functions.sh"
 
-if [$# -neq 2]; then
+set -e
+
+echo "Checking prerequisites..."
+
+if [ $# -ne 2 ]; then
   echo "Wrong number of arguments!"
   return 2
 fi
 
-
-
 TOKEN=$1
 
 VERSION=$2
+update_version "${VERSION}"
 
-updateVersion $VERSION
+echo "Preparing NPM..."
+npm install
+(cd "${SCRIPT_LOCATION}/../publishjgivenreport/" && npm install)
+npm install -g tfx-cli
 
 echo "Building extension..."
 npm run-script build
@@ -24,6 +32,6 @@ echo "Building successful!"
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 echo "Publishing extension to marketplace..."
-tfx extension publish --manifest-globs vss-extension --token $TOKEN
+tfx extension publish --manifest-globs vss-extension.json --token $TOKEN
 
 echo "Publishing successful!"
