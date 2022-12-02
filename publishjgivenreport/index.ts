@@ -1,10 +1,8 @@
-import * as tl from 'azure-pipelines-task-lib/task'
 import * as fs from 'fs'
 import * as path from 'path'
-import { jsonToTagMap } from "../src/enhancer/utils";
-
-const glob = require('glob')
-const pako = require('pako')
+import * as glob from 'glob'
+import * as pako from 'pako'
+const tl = require('azure-pipelines-task-lib/task')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
 
@@ -256,6 +254,17 @@ function locationMappingsToJSON(): string {
 function removeThumbFromFileName(fileName: string) {
     return fileName.slice(0, fileName.lastIndexOf('-thumb')) +
         fileName.slice(fileName.lastIndexOf('-thumb') + 6)
+}
+
+function jsonToTagMap(givenJSON: string): TagMap {
+    let tagMap: TagMap = new Map(Object.entries(JSON.parse(givenJSON)))
+    for (let primaryLevel of tagMap.keys()) {
+        tagMap.set(primaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!)))
+        for (let secondaryLevel of tagMap.get(primaryLevel)!.keys()) {
+            tagMap.get(primaryLevel)!.set(secondaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!.get(secondaryLevel)!)))
+        }
+    }
+    return tagMap
 }
 
 uploadAllJGivenReports()

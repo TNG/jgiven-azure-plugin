@@ -1,11 +1,11 @@
 import path from "path";
 import * as ttm from 'azure-pipelines-task-lib/mock-test';
 import * as assert from 'assert'
-import { jsonToTagMap } from "../../src/enhancer/utils";
 
 let fs = require('fs')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
+
 const startingPointWithAttachments = path.join(__dirname, 'static/with_attachments')
 const startingPointWithoutIndex = path.join(__dirname, 'static/without_index')
 const dataPath = path.join(startingPointWithAttachments, 'data')
@@ -279,4 +279,15 @@ function containsUploadedFileWithType(allOutput: string, location: string, type:
     let uploadCommandStartingPosition: number = allOutput.lastIndexOf('task.addattachment', position)
     let attachmentType: string = allOutput.slice(allOutput.indexOf('type=', uploadCommandStartingPosition) + 5, allOutput.indexOf(';', allOutput.indexOf('type=', uploadCommandStartingPosition) + 5));
     assert.strictEqual(attachmentType, type, `The attachment was found, but with another type`)
+}
+
+function jsonToTagMap(givenJSON: string): TagMap {
+    let tagMap: TagMap = new Map(Object.entries(JSON.parse(givenJSON)))
+    for (let primaryLevel of tagMap.keys()) {
+        tagMap.set(primaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!)))
+        for (let secondaryLevel of tagMap.get(primaryLevel)!.keys()) {
+            tagMap.get(primaryLevel)!.set(secondaryLevel, new Map(Object.entries(tagMap.get(primaryLevel)!.get(secondaryLevel)!)))
+        }
+    }
+    return tagMap
 }
