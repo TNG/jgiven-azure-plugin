@@ -20,9 +20,8 @@ VERSION=$2
 update_version "${VERSION}"
 
 echo "Preparing NPM..."
-npm install
-(cd "${SCRIPT_LOCATION}/../publishjgivenreport/" && npm install)
 npm install -g tfx-cli
+npm i --save-dev @types/mocha
 
 echo "Building extension..."
 npm run-script build

@@ -1,9 +1,10 @@
 import * as tl from 'azure-pipelines-task-lib/task'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as pako from 'pako'
-import * as glob from 'glob'
 import { jsonToTagMap } from "../src/enhancer/utils";
+
+const glob = require('glob')
+const pako = require('pako')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
 
@@ -100,7 +101,7 @@ function uploadAllJGivenReports() {
     let lastValidLocation: string = ''
     patterns.forEach(currentPattern => {
         let matchingLocations = glob.sync(currentPattern, { cwd: centralPath })
-        matchingLocations.forEach(location => {
+        matchingLocations.forEach((location: string) => {
             try {
                 let validLocation: boolean = isJGivenReportLocation(path.join(centralPath, location))
                 if (!uploadedLocations.has(location) && validLocation) {

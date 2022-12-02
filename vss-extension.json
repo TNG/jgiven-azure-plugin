@@ -1,10 +1,10 @@
 {
     "manifestVersion": 1,
-    "id": "JGivenTestReport",
+    "id": "jgivenTestIntegration",
     "version": "0.1.154",
-    "name": "JGiven Test Reports",
-    "publisher": "TNGTechnologyConsultingGmbH",
-    "public": true,
+    "name": "JGiven Reports Publisher",
+    "publisher": "jgivenTestIntegration",
+    "public": false,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
