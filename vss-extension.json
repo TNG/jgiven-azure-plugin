@@ -4,7 +4,7 @@
     "version": "0.1.154",
     "name": "JGiven Test Reports",
     "publisher": "TNGTechnologyConsultingGmbH",
-    "public": true,
+    "public": false,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
