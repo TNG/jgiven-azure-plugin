@@ -8,8 +8,8 @@
     "author": "Andru-Lucian Stefanescu",
     "version": {
         "Major": 0,
-        "Minor": 2,
-        "Patch": 18
+        "Minor": 3,
+        "Patch": 0
     },
     "instanceNameFormat": "Publish JGiven Report",
     "execution": {
