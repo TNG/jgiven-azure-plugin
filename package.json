@@ -1,6 +1,6 @@
 {
   "name": "publishjgivenreport",
-  "version": "0.1.132",
+  "version": "0.2.38",
   "description": "Extension that publishes JGiven test reports in Azure DevOps console",
   "scripts": {
     "build": "tsc -p . && tsc -p publishjgivenreport/",
