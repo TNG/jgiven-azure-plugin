@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "jgivenTestIntegration",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "name": "JGiven Reports Publisher",
     "publisher": "TNGTechnologyConsultingGmbH",
     "public": false,
@@ -72,5 +72,8 @@
                 "name": "publishjgivenreport"
             }
         }
+    ],
+    "galleryFlags": [
+        "Public"
     ]
 }
