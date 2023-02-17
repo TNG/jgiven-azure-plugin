@@ -46,12 +46,12 @@ via the `workingDir` parameter.
 
 After executing the pipeline, a new tab in Azure DevOps will appear with content similar to
 the following screenshot:
-![JGiven Panel in Dev Ops](resources/screenshot.png "JGiven Dashboard")
+![JGiven Panel in Dev Ops](https://raw.githubusercontent.com/TNG/jgiven-azure-plugin/master/resources/screenshot.png "JGiven Dashboard")
 
 # License
 
-The JGiven Azure DevOps Plugin is published under the Apache License 2.0, see https://www.apache.org/licenses/LICENSE-2.0 or [LICENSE](LICENSE) for details.
+The JGiven Azure DevOps Plugin is published under the Apache License 2.0, see https://www.apache.org/licenses/LICENSE-2.0 or [LICENSE](https://github.com/TNG/jgiven-azure-plugin/blob/master/LICENSE) for details.
 
 # Contributing
-See [CONTRIBUTING](CONTRIBUTING.md)
+See [CONTRIBUTING](https://github.com/TNG/jgiven-azure-plugin/blob/master/CONTRIBUTING.md)
 
