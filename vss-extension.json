@@ -48,6 +48,14 @@
     "scopes": [
         "vso.build_execute"
     ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "LICENSE"
+        }
+    },
     "contributions": [
         {
             "id": "build-info-tab",
@@ -75,5 +83,8 @@
     ],
     "galleryFlags": [
         "Public"
-    ]
+    ],
+    "icons": {
+        "default": "resources/icon.png"
+    }
 }
