@@ -1,6 +1,6 @@
 {
-  "name": "publishjgivenreport",
-  "version": "0.5.2",
+  "name": "publishjgivenreport-0.5.3",
+  "version": "0.5.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,15 +23,15 @@
   "author": "Andru-Lucian Stefanescu",
   "license": "Apache License",
   "dependencies": {
-    "azure-pipelines-task-lib": "^3.1.8"
+    "azure-pipelines-task-lib": "^5.2.0"
   },
   "devDependencies": {
-    "@types/mocha": "^9.0.0",
-    "@types/pako": "^1.0.2",
-    "@types/glob": "^7.1.4",
-    "glob": "^7.1.7",
-    "mocha": "^9.1.1",
-    "pako": "^2.0.4",
-    "typescript": "^4.3.5"
+    "@types/mocha": "^10.0.10",
+    "@types/pako": "^2.0.3",
+    "@types/glob": "^8.1.0",
+    "glob": "^11.0.2",
+    "mocha": "^11.2.2",
+    "pako": "^2.1.0",
+    "typescript": "^5.8.3"
   }
 }

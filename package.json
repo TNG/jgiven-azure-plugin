@@ -1,5 +1,5 @@
 {
-  "name": "publishjgivenreport",
+  "name": "publishjgivenreport-0.5.3",
   "version": "0.5.3",
   "description": "Extension that publishes JGiven test reports in Azure DevOps console",
   "scripts": {

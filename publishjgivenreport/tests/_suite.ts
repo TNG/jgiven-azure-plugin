@@ -40,7 +40,7 @@ describe('Attachment creation and upload', function () {
     before(() => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
     })
 
     after(() => {
@@ -84,7 +84,7 @@ describe('Mappings Consistency', function () {
     before(() => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
     })
 
     after(() => {
@@ -115,7 +115,7 @@ describe('Multiple locations', function () {
     before(() => {
         tp = path.join(__dirname, 'multipleLocationsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
     })
 
     after(() => {
@@ -181,7 +181,7 @@ describe('JSON Handler', function () {
     before(() => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
     })
 
     after(() => {
@@ -223,7 +223,7 @@ describe(`Failure tests`, function () {
         let tr: ttm.MockTestRunner
         tp = path.join(__dirname, 'withoutLocationTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
         assert.strictEqual(tr.failed, true)
         assert.strictEqual(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
         done()
@@ -234,7 +234,7 @@ describe(`Failure tests`, function () {
         let tr: ttm.MockTestRunner
         tp = path.join(__dirname, 'withoutIndexTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        tr.runAsync()
         assert.strictEqual(tr.failed, true)
         assert.strictEqual(tr.errorIssues.includes(`The given location ${path.join(startingPointWithoutIndex, 'index.html')} does not exist.`), true)
         done()
