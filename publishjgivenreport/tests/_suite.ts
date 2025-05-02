@@ -37,10 +37,10 @@ describe('Attachment creation and upload', function () {
     let tp: string
     let tr: ttm.MockTestRunner
 
-    before(() => {
+    before(async () => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        await tr.runAsync()
     })
 
     after(() => {
@@ -81,10 +81,10 @@ describe('Mappings Consistency', function () {
     let tp: string
     let tr: ttm.MockTestRunner
 
-    before(() => {
+    before(async () => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        await tr.runAsync()
     })
 
     after(() => {
@@ -112,10 +112,10 @@ describe('Multiple locations', function () {
     let tp: string
     let tr: ttm.MockTestRunner
 
-    before(() => {
+    before(async () => {
         tp = path.join(__dirname, 'multipleLocationsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        await tr.runAsync()
     })
 
     after(() => {
@@ -178,10 +178,10 @@ describe('JSON Handler', function () {
     let tp: string
     let tr: ttm.MockTestRunner
 
-    before(() => {
+    before(async () => {
         tp = path.join(__dirname, 'withAttachmentsTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
+        await tr.runAsync()
     })
 
     after(() => {
@@ -223,10 +223,11 @@ describe(`Failure tests`, function () {
         let tr: ttm.MockTestRunner
         tp = path.join(__dirname, 'withoutLocationTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
-        assert.strictEqual(tr.failed, true)
-        assert.strictEqual(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
-        done()
+        tr.runAsync().then ( () => {
+            assert.strictEqual(tr.failed, true)
+            assert.strictEqual(tr.errorIssues.includes("The pattern(s) didn't match any path."), true)
+            done()
+        })
     })
 
     it("Should fail when it doesn't find an index file", (done) => {
@@ -234,10 +235,11 @@ describe(`Failure tests`, function () {
         let tr: ttm.MockTestRunner
         tp = path.join(__dirname, 'withoutIndexTest.js')
         tr = new ttm.MockTestRunner(tp)
-        tr.run()
-        assert.strictEqual(tr.failed, true)
-        assert.strictEqual(tr.errorIssues.includes(`The given location ${path.join(startingPointWithoutIndex, 'index.html')} does not exist.`), true)
-        done()
+        tr.runAsync().then( () => {
+            assert.strictEqual(tr.failed, true)
+            assert.strictEqual(tr.errorIssues.includes(`The given location ${path.join(startingPointWithoutIndex, 'index.html')} does not exist.`), true)
+            done()
+        })
     })
 })
 

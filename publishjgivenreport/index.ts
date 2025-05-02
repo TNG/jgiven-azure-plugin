@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
-import * as pako from 'pako'
+import pako from 'pako'
 const tl = require('azure-pipelines-task-lib/task')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
@@ -98,7 +98,7 @@ function uploadAllJGivenReports() {
     let hasAtLeastOneValidLocation: boolean = false
     let lastValidLocation: string = ''
     patterns.forEach(currentPattern => {
-        let matchingLocations = glob.sync(currentPattern, { cwd: centralPath })
+        let matchingLocations =  glob.sync(currentPattern, { cwd: centralPath })
         matchingLocations.forEach((location: string) => {
             try {
                 let validLocation: boolean = isJGivenReportLocation(path.join(centralPath, location))
