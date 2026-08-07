@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
-import pako from 'pako'
+import { ungzip } from 'pako'
 const tl = require('azure-pipelines-task-lib/task')
 
 type TagMap = Map<string, Map<string, Map<string, string | Array<string>>>>
@@ -186,7 +186,7 @@ function writeContentToFile(filePath: string, fileContent: string): void {
 function writeJSONFromZippedFile(dataFilePath: string, dataWritePath: string) {
     let fileContent: string = getFileContent(dataFilePath)
     let zippedContent: string = fileContent.slice(fileContent.indexOf("'") + 1, fileContent.lastIndexOf("'"))
-    let unzippedContent: string = pako.ungzip(Buffer.from(zippedContent, 'base64'), { to: 'string' })
+    let unzippedContent: string = ungzip(Buffer.from(zippedContent, 'base64'), { toText: true })
     let scenariosString: string = unzippedContent.slice(unzippedContent.indexOf("["), unzippedContent.lastIndexOf("]") + 1)
 
     writeContentToFile(dataWritePath, scenariosString)
