@@ -24,19 +24,18 @@ npm install
 (cd "${SCRIPT_LOCATION}/../publishjgivenreport/" && npm install)
 
 npm install -g tfx-cli
-npm i --save-dev @types/mocha
-npm i --save-dev @types/glob
-npm i --save-dev @types/pako
-
 
 echo "Building extension..."
+npm run clean
 npm run build
 
 echo "Building successful!"
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
+VSIX_FILE=$(ls TNGTechnologyConsultingGmbH.*.vsix)
+
 echo "Publishing extension to marketplace..."
-tfx extension publish --manifest-globs vss-extension.json --token $TOKEN
+tfx extension publish --vsix "$VSIX_FILE" --token $TOKEN
 
 echo "Publishing successful!"

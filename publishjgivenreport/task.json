@@ -8,12 +8,12 @@
     "author": "Andru-Lucian Stefanescu",
     "version": {
         "Major": 0,
-        "Minor": 5,
-        "Patch": 3
+        "Minor": 6,
+        "Patch": 0
     },
     "instanceNameFormat": "Publish JGiven Report",
     "execution": {
-        "Node10": {
+        "Node24": {
             "target": "index.js"
         }
     }
