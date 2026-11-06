@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
         "skipLibCheck": true,
-        "module": "amd",
-        "moduleResolution": "node",
+        "module": "es2020",
+        "moduleResolution": "bundler",
         "target": "es2018",
         "outDir": "dist/",
+        "rootDir": "src/",
         "types": [
             "vss-web-extension-sdk",
             "jquery"

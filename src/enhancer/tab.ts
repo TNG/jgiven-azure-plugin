@@ -1,7 +1,7 @@
-import Controls = require("VSS/Controls");
-import TFS_Build_Contracts = require("TFS/Build/Contracts");
-import TFS_Build_Extension_Contracts = require("TFS/Build/ExtensionContracts");
-import DT_Client = require("TFS/DistributedTask/TaskRestClient");
+import * as Controls from "VSS/Controls";
+import * as TFS_Build_Contracts from "TFS/Build/Contracts";
+import * as TFS_Build_Extension_Contracts from "TFS/Build/ExtensionContracts";
+import * as DT_Client from "TFS/DistributedTask/TaskRestClient";
 import { TaskAttachment } from "TFS/DistributedTask/Contracts";
 import { updateHtml, getAllUserAttachmentLocations, getScriptDefinitions, getJobIdFromName } from './helper'
 
@@ -11,9 +11,9 @@ export class InfoTab extends Controls.BaseControl {
 	private locationTranslation: Map<string, Map<string, string>> = new Map()
 	private jgivenFileToLocalPath: Map<string, Map<string, string>> = new Map()
 	private toBeIncludedInHTML: Array<any> = []
-	private vsoContext: WebContext
-	private build: TFS_Build_Contracts.Build
-	private taskClient: DT_Client.TaskHttpClient4_1
+	private vsoContext!: WebContext
+	private build!: TFS_Build_Contracts.Build
+	private taskClient!: DT_Client.TaskHttpClient4_1
 
 	constructor() {
 		super();
@@ -83,7 +83,7 @@ export class InfoTab extends Controls.BaseControl {
 						if (!attachmentContents.has(jobIdOfAttachment)) {
 							attachmentContents.set(jobIdOfAttachment, [])
 						}
-						attachmentContents.get(jobIdOfAttachment).push(_currentInfoTab.getPlainTextFromArrayBuffer(attachmentContent))
+						attachmentContents.get(jobIdOfAttachment)!.push(_currentInfoTab.getPlainTextFromArrayBuffer(attachmentContent))
 					});
 			}
 		}
@@ -100,7 +100,7 @@ export class InfoTab extends Controls.BaseControl {
 				if (!attachmentLinks.has(jobId)) {
 					attachmentLinks.set(jobId, []);
 				}
-				attachmentLinks.get(jobId).push(attachment._links.self.href)
+				attachmentLinks.get(jobId)!.push(attachment._links.self.href)
 			}
 		});
 

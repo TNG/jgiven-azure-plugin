@@ -39,8 +39,8 @@ export function getAllUserAttachmentLocations(attachmentLinks: Map<any, any>, jg
     }
 }
 
-export function getScriptDefinitions(metadataContents: Map<any, any>, toBeIncludedInHTML, tagsContents, dataContents,
-    locationTranslation) {
+export function getScriptDefinitions(metadataContents: Map<any, any>, toBeIncludedInHTML: Array<any>, tagsContents: Map<any, any>, dataContents: Map<any, any>,
+    locationTranslation: Map<any, any>) {
     let allJobIds = Array.from(metadataContents.keys())
     let metadataJSON: string = metadataContents.get(allJobIds[0])!
     let tagsJson = mergeAllTags(tagsContents)

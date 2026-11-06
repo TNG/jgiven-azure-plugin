@@ -1,7 +1,8 @@
 node_modules
-publishjgivenreports/node_modules
+.idea
+publishjgivenreport/node_modules
 package-lock.json
-publishjgivenreports/package-lock.json
+publishjgivenreport/package-lock.json
 *.vsix
 dist
 publishjgivenreport/index.js

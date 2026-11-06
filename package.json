@@ -1,11 +1,11 @@
 {
   "name": "publishjgivenreport",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Extension that publishes JGiven test reports in Azure DevOps console",
   "scripts": {
-    "build": "tsc -p . && tsc -p publishjgivenreport/",
-    "postbuild": "npm run package",
-    "package": "tfx extension create",
+    "build": "npm run compile && npm run package",
+    "compile": "tsc -p . && esbuild dist/enhancer/tab.js --bundle --format=iife --global-name=jgivenTab --outfile=dist/tab.js --external:VSS/* --external:TFS/* --external:jquery && node scripts/wrap-amd.js && tsc -p publishjgivenreport/",
+    "package": "sh scripts/package.sh",
     "clean": "rimraf ./dist && rimraf ./*.vsix"
   },
   "author": "Andru-Lucian Stefanescu",
@@ -18,18 +18,14 @@
     }
   ],
   "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.10",
-    "@types/pako": "^2.0.3",
-    "ncp": "^2.0.0",
-    "rimraf": "^6.0.1",
-    "tfx-cli": "^0.21.1",
-    "typescript": "^5.8.3"
+    "@types/jquery": "^4.0.1",
+    "esbuild": "^0.28.2",
+    "rimraf": "^6.1.4",
+    "tfx-cli": "^0.24.2",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
-    "@types/jquery": "^3.5.32",
-    "azure-pipelines-task-lib": "^5.2.0",
-    "modclean": "^3.0.0-beta.1",
+    "azure-pipelines-task-lib": "^5.283.0",
     "vss-web-extension-sdk": "^5.141.0"
   }
 }
